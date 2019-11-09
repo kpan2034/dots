@@ -1,0 +1,202 @@
+set nocompatible              " be iMproved, required
+filetype off                  " required
+
+" set the runtime path to include Vundle and initialize
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+" alternatively, pass a path where Vundle should install plugins
+"call vundle#begin('~/some/path/here')
+
+" let Vundle manage Vundle, required
+Plugin 'VundleVim/Vundle.vim'
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
+Plugin 'tpope/vim-fugitive'
+" plugin from http://vim-scripts.org/vim/scripts.html
+" Plugin 'L9'
+" Git plugin not hosted on GitHub
+Plugin 'git://git.wincent.com/command-t.git'
+" git repos on your local machine (i.e. when working on your own plugin)
+"Plugin 'file:///home/kpan/path/to/plugin'
+" The sparkup vim script is in a subdirectory of this repo called vim.
+" Pass the path to set the runtimepath properly.
+Plugin 'rstacruz/sparkup', {'rtp': 'vim/'}
+" Install L9 and avoid a Naming conflict if you've already installed a
+" different version somewhere else.
+" Plugin 'ascenator/L9', {'name': 'newL9'}
+Plugin 'Valloric/YouCompleteMe'
+
+" Plugins From dotfiles repo
+" Plugins
+Plugin 'Shougo/vimproc.vim', { 'do': 'make' }
+Plugin 'ciaranm/detectindent'
+Plugin 'junegunn/fzf', { 'do': 'yes \| ./install' }
+Plugin 'junegunn/fzf.vim'
+Plugin 'mhinz/vim-signify'
+Plugin 'moll/vim-bbye'
+Plugin 'rhysd/vim-clang-format'
+Plugin 'scrooloose/nerdcommenter'
+" Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-dispatch'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'w0rp/ale'
+" Color Schemes
+
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'nanotech/jellybeans.vim'
+Plugin 'chriskempson/base16-vim'
+
+" On-Demand Plug-ins
+Plugin 'chiel92/vim-autoformat', { 'on': 'Autoformat' }
+Plugin 'mbbill/undotree', { 'on': 'UndotreeToggle' }
+Plugin 'octol/vim-cpp-enhanced-highlight', { 'for': 'cpp' }
+Plugin 'rhysd/vim-grammarous', { 'on': 'GrammarousCheck' }
+Plugin 'scrooloose/nerdtree', { 'on': ['NERDTreeFind', 'NERDTreeToggle'] }
+Plugin 'vim-scripts/DoxygenToolkit.vim', { 'for': 'cpp' }
+Plugin 'junegunn/goyo.vim', { 'on': 'Goyo' }
+
+"Added 8/12/18
+Plugin 'majutsushi/tagbar'
+"Plugin 'myhere/vim-nodejs-complete' " for node-js
+
+"Added 8/10/19
+Plugin 'tibabit/vim-templates'
+Plugin 'moll/vim-node'
+" When I start using these languages
+" Golang
+" Plugin 'fatih/vim-go', { 'do': ':GoInstallBinaries', 'for': 'go' }
+"
+" " Haskell
+" Plugin 'Twinside/vim-hoogle', { 'for': 'haskell' }
+" Plugin 'eagletmt/ghcmod-vim', { 'for': 'haskell' }
+" Plugin 'eagletmt/neco-ghc', { 'for': 'haskell' }
+" Plugin 'mpickering/hlint-refactor-vim', { 'for': 'haskell' }
+"
+" " LLVM
+" Plugin 'jdevlieghere/llvm.vim', { 'for': 'llvm' }
+"
+" " Markdown
+" Plugin 'godlygeek/tabular' | Plug 'plasticboy/vim-markdown', { 'for':
+" 'markdown' }
+"
+" " Rust
+" Plugin 'racer-rust/vim-racer', { 'for': 'rust' }
+" Plugin 'rust-lang/rust.vim', { 'for': 'rust' }
+
+
+
+
+
+call vundle#end()            " required
+filetype plugin indent on    " required
+
+" To ignore plugin indent changes, instead use:
+"filetype plugin on
+"
+" Brief help
+" :PluginList       - lists configured plugins
+" :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
+" :PluginSearch foo - searches for foo; append `!` to refresh local cache
+" :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
+"
+" see :h vundle for more details or wiki for FAQ
+" Put your non-Plugin stuff after this line
+
+
+let g:ycm_global_ycm_extra_conf = "~/.vim/.ycm_extra_conf.py"
+
+
+
+" Colours and Syntax
+syntax enable "Syntax Highlighting ON
+set background=dark 
+
+" Colour scheme
+"colorscheme bubblegum
+highlight clear SignColumn "Sign coloum same background as line numbers
+
+
+
+" Essentials
+"Again, taken from dotfiles repo
+
+ filetype plugin indent on       " Enable file type support
+ set encoding=utf-8              " UTF-8 encoding
+ set binary                      " Enable binary support
+ set hidden                      " Hide buffers
+ set showcmd                     " Show current command
+ set showmode                    " Show current mode
+ set autoread                    " Auto reload
+ set ttyfast                     " Fast terminal
+ set ruler                       " Show ruler
+ set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%)
+ set nofoldenable                " disable folding
+ set laststatus=2                " Alwasy display statusline
+
+
+
+ set nu "Show line numbers
+
+
+
+ " Indentation
+ " set smarttab                    " Better tabs
+ " set smartindent                 " Inserts new level of indentation
+ " set autoindent                  " Copy indentation from previous line
+set tabstop=4                   " Columns a tab counts for
+set softtabstop=4               " Columns a tab inserts in insert mode
+set shiftwidth=4                " Columns inserted with the reindent
+set expandtab
+ " operations
+ " set shiftround                  " Always indent by multiple of shiftwidth
+ "
+ 
+ set  rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+ set laststatus=2
+ set t_Co=256
+
+
+ " Autocommands
+ map <C-n> :NERDTreeToggle<CR>
+ " Opens NERDTree if dir is opened
+ autocmd StdinReadPre * let s:std_in=1
+ autocmd VimEnter * if argc() == 1 && isdirectory(argv()[0]) && !exists("s:std_in") | exe 'NERDTree' argv()[0] | wincmd p | ene | endif
+ " Opens NERDTree if no file was specified
+ autocmd StdinReadPre * let s:std_in=1
+ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+ " Closes VIM if only NerdTree is left open
+ " autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+ " Enable the list of buffers
+ let g:airline#extensions#tabline#enabled = 1
+ "
+ " Show just the filename
+ let g:airline#extensions#tabline#fnamemod = ':t'
+
+ " Set AirLine Theme
+ " let g:airline_theme='bubblegum' " Luna acceptable alternative
+ let g:airline_theme='wal'
+ let g:airline_powerline_fonts = 1
+
+"augroup templates
+	 "autocmd BufNewFile *.cpp 0r ~/.vim/templates/template.cpp
+	 "autocmd BufNewFile *.c 0r ~/.vim/templates/template.cpp
+	 "autocmd BufNewFile *.h 0r ~/.vim/templates/template.cpp
+"augroup END
+ 
+
+ " Easy compiler stuff
+
+ map <C-k> :w<CR> :!clear<CR><CR> :!g++ -std=c++14 % && ./a.out<CR>
+ "map <C-k> :w<CR> :!clear<CR><CR> :!g++ % -lncurses && ./a.out<CR>
+" Set <Leader> key
+ let mapleader=","
+
+ " Easy template load for cpp
+ "map <C-\> :read ~/.vim/templates/template.cpp<CR>
+
+ " TagToggle at F8
+ map <F8> :TagbarToggle<CR>

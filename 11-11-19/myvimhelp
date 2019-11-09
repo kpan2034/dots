@@ -1,0 +1,7 @@
+NerdTreeToggle - <C+Alt+N>
+TagBar - <F8>
+Buffers - :b[ndp]; <C+w>w, [hjkl]; :vsp, :sp
+NerdComment - <count><leader>c[cuns<space>]
+<leader> is set as ','
+
+node -  gf, <C-w>f, :Nedit <arg>, 

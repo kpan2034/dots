@@ -43,7 +43,5 @@ fi
 #exec xterm -geometry 80x66+0+0 -name lo
 
 [[ -f ~/.Xresources ]] && xrdb -merge -I$HOME !/.Xresources
-
 wal -i "$(< "${HOME}/.cache/wal/wal")"
 exec i3
-
